@@ -1,14 +1,11 @@
 from model.sales import sales
 from view import terminal as view
 
-
-def list_transactions():
-    view.print_error_message("Not implemented yet.")
-
-
 def add_transaction():
     view.print_error_message("Not implemented yet.")
 
+def list_transactions():
+    view.print_error_message("Not implemented yet.")
 
 def update_transaction():
     view.print_error_message("Not implemented yet.")
@@ -36,9 +33,9 @@ def sum_transactions_between():
 
 def run_operation(option):
     if option == 1:
-        list_transactions()
-    elif option == 2:
         add_transaction()
+    elif option == 2:
+        list_transactions()
     elif option == 3:
         update_transaction()
     elif option == 4:

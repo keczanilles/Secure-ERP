@@ -2,11 +2,11 @@ from model.crm import crm
 from view import terminal as view
 
 
-def list_customers():
+def add_customer():
     view.print_error_message("Not implemented yet.")
 
 
-def add_customer():
+def list_customers():
     view.print_error_message("Not implemented yet.")
 
 
@@ -24,9 +24,9 @@ def get_subscribed_emails():
 
 def run_operation(option):
     if option == 1:
-        list_customers()
-    elif option == 2:
         add_customer()
+    elif option == 2:
+        list_customers()
     elif option == 3:
         update_customer()
     elif option == 4:

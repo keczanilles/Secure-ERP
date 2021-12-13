@@ -2,13 +2,11 @@ from model.hr import hr
 from view import terminal as view
 
 
-def list_employees():
-    view.print_error_message("Not implemented yet.")
-
-
 def add_employee():
     view.print_error_message("Not implemented yet.")
 
+def list_employees():
+    view.print_error_message("Not implemented yet.")
 
 def update_employee():
     view.print_error_message("Not implemented yet.")
@@ -40,9 +38,9 @@ def count_employees_per_department():
 
 def run_operation(option):
     if option == 1:
-        list_employees()
-    elif option == 2:
         add_employee()
+    elif option == 2:
+        list_employees()
     elif option == 3:
         update_employee()
     elif option == 4:
