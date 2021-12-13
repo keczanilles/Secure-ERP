@@ -15,16 +15,16 @@ HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
 
 
-def get_hr_data(datafile):
-    with open (datafile, "r") as files:
-        hr_data = []
-        for line in files:
-            data = {}
-            file = line.split(';')
-            for i in range(len(HEADERS)):
-                data[HEADERS[i]] = file[i]
-            hr_data.append(data)
-        print(hr_data)
+# def get_hr_data(datafile):
+#     with open (datafile, "r") as files:
+#         hr_data = []
+#         for line in files:
+#             data = {}
+#             file = line.split(';')
+#             for i in range(len(HEADERS)):
+#                 data[HEADERS[i]] = file[i]
+#             hr_data.append(data)
+#         print(hr_data)
 
 
-get_hr_data(DATAFILE)
+# get_hr_data(DATAFILE)
