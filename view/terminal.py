@@ -12,9 +12,12 @@ def print_menu(title, list_options):
         list_options (list): list of the menu options (listed starting from 1, 0th element goes to the end)
     """
     print(f'{title}:')
-    list_options1 = list_options[1:]+[list_options[0]]
-    # print(f'{list_options.index(list_options)} {list_options}') 
-    pass
+    temp_list = []
+    for key, value in enumerate(list_options):
+        temp_list.append(f'({key}) {value}')
+    list_options1 = temp_list[1:]+[temp_list[0]]
+    for i in list_options1:
+        print(i)
 
 
 def print_message(message):
@@ -23,7 +26,8 @@ def print_message(message):
     Args:
         message: str - the message
     """
-    pass
+    print(message)
+    
 
 
 def print_general_results(result, label):
@@ -68,7 +72,9 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
-    pass
+    for i in labels:
+        input(i)
+    return i
 
 
 def print_error_message(message):

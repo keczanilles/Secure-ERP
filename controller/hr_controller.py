@@ -63,8 +63,8 @@ def run_operation(option):
 
 def display_menu():
     options = ["Back to main menu",
-               "List employees",
                "Add new employee",
+               "List employees",
                "Update employee",
                "Remove employee",
                "Oldest and youngest employees",

@@ -1,12 +1,17 @@
 from model.crm import crm
+from model.hr.hr import DATAFILE
 from view import terminal as view
 
-
+LABELS =  ["id","name", "email", "subscribed"]
 def add_customer():
+    table = view.get_inputs(LABELS[1:])
+    crm.add_customers(table)
     view.print_error_message("Not implemented yet.")
 
 
 def list_customers():
+    data = crm.list_costumers()
+    print(data)
     view.print_error_message("Not implemented yet.")
 
 
@@ -41,8 +46,8 @@ def run_operation(option):
 
 def display_menu():
     options = ["Back to main menu",
-               "List customers",
                "Add new customer",
+               "List customers",
                "Update customer",
                "Remove customer",
                "Subscribed customer emails"]

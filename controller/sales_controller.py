@@ -56,8 +56,8 @@ def run_operation(option):
 
 def display_menu():
     options = ["Back to main menu",
-               "List transactions",
                "Add new transaction",
+               "List transactions",
                "Update transaction",
                "Remove transaction",
                "Get the transaction that made the biggest revenue",

@@ -12,3 +12,12 @@ from model import data_manager, util
 
 DATAFILE = "model/sales/sales.csv"
 HEADERS = ["Id", "Customer", "Product", "Price", "Date"]
+
+
+
+def list_costumers():
+    data = data_manager.read_table_from_file(DATAFILE)
+    sales_data = []
+    for line in data:
+        sales_data.append(dict(zip(HEADERS,line)))
+    return sales_data
