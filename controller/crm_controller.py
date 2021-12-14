@@ -2,7 +2,7 @@ from model.crm import crm
 from model import util
 from view import terminal as view
 
-LABELS =  ["id","name", "email", "subscribed"]
+LABELS =  ["id", "name", "email", "subscribed"]
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
@@ -17,7 +17,13 @@ def list_customers():
 
 
 def update_customer():
-    view.print_error_message("Not implemented yet.")
+    table = view.get_inputs([LABELS[0]])
+    print(table)
+    if crm.check_id(table):
+        data = view.get_inputs(LABELS[1:])
+        crm.update_costumers(table, data)
+    else:
+        view.print_error_message("Not implemented yet.")
 
 
 def delete_customer():

@@ -34,9 +34,39 @@ def list_costumers():
     for line in data:
         crm_data.append(dict(zip(HEADERS,line)))
     return crm_data
+
+def check_id(table):
+    table = ''.join(table)
+    data = data_manager.read_table_from_file(DATAFILE)
+    id = []
+    for line in data:
+        id.append(line[0])
+    if table in id:
+        return True
+    else:
+        return False
+
+def update_costumers(table, data):
+    list = list_costumers()
+    temp_list = []
+    for dicts in list:
+        for key, value in dicts.items():
+            if key == 'id' and value == table:
+                dicts = zip(HEADERS, (table,data))
+                temp_list.append(dicts)
+                # dicts[value] = data_manager.write_table_to_file(DATAFILE, data, separator=';')
+    print(temp_list)
+
+# update_costumers('_6jmMi4H+b', '1,2,3')
+
     
-def update_costumers():
-    pass
+    # def get_least_bought_meal(data_set):
+    # meal = sorted(data_set, key=lambda v: v["quantity"]) 
+    # least_bought = meal[0]["meal"]
+    # return least_bought
+    
+    
 
 # def delete_costumers():
 #     pass
+# print(list_costumers())
