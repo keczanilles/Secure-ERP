@@ -1,11 +1,12 @@
 from model.crm import crm
-from model.hr.hr import DATAFILE
+from model import util
 from view import terminal as view
 
 LABELS =  ["id","name", "email", "subscribed"]
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
+    print(table)
     view.print_error_message("Not implemented yet.")
 
 

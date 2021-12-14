@@ -15,8 +15,17 @@ DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
 def add_customers(table):
-    data_manager.write_table_to_file(DATAFILE, table, separator=';')
-    pass
+    table = table
+    table.insert(0, util.generate_id(number_of_small_letters=4,
+                number_of_capital_letters=2,
+                number_of_digits=2,
+                number_of_special_chars=2,
+                allowed_special_chars=r"_+-!"))
+    temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    temp_list.append(table)
+    data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
+    
+    print(temp_list)
 
 
 def list_costumers():
@@ -26,8 +35,8 @@ def list_costumers():
         crm_data.append(dict(zip(HEADERS,line)))
     return crm_data
     
-# def update_costumers():
-#     pass
+def update_costumers():
+    pass
 
 # def delete_costumers():
 #     pass

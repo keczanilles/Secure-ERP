@@ -72,9 +72,11 @@ def get_inputs(labels):
     Args:
         labels: list - the list of the labels to be displayed before each prompt
     """
+    list = []
     for i in labels:
-        input(i)
-    return i
+        x = input(i)
+        list.append(x)
+    return list
 
 
 def print_error_message(message):
