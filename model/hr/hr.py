@@ -75,18 +75,16 @@ def clearance(number):
             counter += 1
     return counter
 
+#  SALES = 3 PRODUCTION = 4 HR = 2 
 def count_employees_per_department():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     departments = []
-    keys = sorted(set(departments))
     numbers = []
     for i in list:
         departments.append(i[3])
-    for i in sorted(departments):
+    for i in sorted(set(departments)):
         x = departments.count(i)
         numbers.append(x)
+    keys = sorted(set(departments))
     dicts = dict(zip(keys, numbers))
     return dicts
-
-
-print(count_employees_per_department())

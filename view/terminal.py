@@ -63,7 +63,7 @@ def get_input(label):
     """
     mode = input(label )
     return int(mode)
-    pass
+    
 
 
 def get_inputs(labels):

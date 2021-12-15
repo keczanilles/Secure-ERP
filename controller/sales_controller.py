@@ -1,25 +1,44 @@
 from model.sales import sales
 from view import terminal as view
 
+
+LABELS = ["Id", "Customer", "Product", "Price", "Date"]
+
+
 def add_transaction():
+    table = view.get_inputs(LABELS[1:])
+    sales.add_transactions(table)
+    print(table)
     view.print_error_message("Not implemented yet.")
 
 def list_transactions():
+    data = sales.list_transactions()
+    print(data)
     view.print_error_message("Not implemented yet.")
 
 def update_transaction():
-    view.print_error_message("Not implemented yet.")
+    table = view.get_inputs([LABELS[0]])
+    if sales.check_id(table):
+        data = view.get_inputs(LABELS[1:])
+        sales.update_transaction(table,data)
+    else:
+        view.print_error_message("Not implemented yet.")
 
 
 def delete_transaction():
+    table = view.get_inputs([LABELS[0]])
+    if sales.check_id(table):
+        sales.delete_transaction(table)
     view.print_error_message("Not implemented yet.")
 
 
 def get_biggest_revenue_transaction():
+    print(sales.get_biggest_revenue_transaction())
     view.print_error_message("Not implemented yet.")
 
 
 def get_biggest_revenue_product():
+    print(sales.get_biggest_revenue_product())
     view.print_error_message("Not implemented yet.")
 
 
