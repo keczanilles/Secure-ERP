@@ -21,12 +21,15 @@ def update_customer():
     print(table)
     if crm.check_id(table):
         data = view.get_inputs(LABELS[1:])
-        crm.update_costumers(table, data)
+        crm.update_customers(table, data)
     else:
         view.print_error_message("Not implemented yet.")
 
 
 def delete_customer():
+    table = view.get_inputs([LABELS[0]])
+    if crm.check_id(table):
+        crm.delete_customers(tables)
     view.print_error_message("Not implemented yet.")
 
 

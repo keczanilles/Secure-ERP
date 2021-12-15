@@ -23,12 +23,13 @@ def add_customers(table):
                 allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
-    data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
-    
     print(temp_list)
+    data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
-def list_costumers():
+
+
+def list_customers():
     data = data_manager.read_table_from_file(DATAFILE)
     crm_data = []
     for line in data:
@@ -46,27 +47,38 @@ def check_id(table):
     else:
         return False
 
-def update_costumers(table, data):
-    list = list_costumers()
-    temp_list = []
+def update_customers(table, data):
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    table = ''.join(table)
     for dicts in list:
-        for key, value in dicts.items():
-            if key == 'id' and value == table:
-                dicts = zip(HEADERS, (table,data))
-                temp_list.append(dicts)
+        if dicts[0] == table:
+            dicts[1] = data[0]
+            dicts[2] = data[1]
+            dicts[3] = data[2]
+    data_manager.write_table_to_file(DATAFILE, list, separator=';')
+                # dicts = zip(HEADERS, (table,data))
+                # temp_list.append(dicts)
+                # dicts[HEADERS[0]] = table
+                # for i in range(len(data)):
+                #     dicts[HEADERS[i-1]] = data[i]
+                #     temp_list.append(dicts)
                 # dicts[value] = data_manager.write_table_to_file(DATAFILE, data, separator=';')
-    print(temp_list)
 
-# update_costumers('_6jmMi4H+b', '1,2,3')
 
-    
+
     # def get_least_bought_meal(data_set):
-    # meal = sorted(data_set, key=lambda v: v["quantity"]) 
+    # meal = sorted(data_set, key=lambda v: v["quantity"])
     # least_bought = meal[0]["meal"]
     # return least_bought
-    
-    
 
-# def delete_costumers():
-#     pass
-# print(list_costumers())
+
+def delete_customers(table):
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    table = ''.join(table)
+    temp_list = []
+    for dicts in list:
+        if dicts[0] != table:
+            temp_list.append(dicts)
+        else:
+            continue
+    data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
