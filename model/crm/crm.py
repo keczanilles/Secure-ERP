@@ -56,16 +56,7 @@ def update_customers(table, data):
             dicts[2] = data[1]
             dicts[3] = data[2]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
-                # dicts = zip(HEADERS, (table,data))
-                # temp_list.append(dicts)
-                # dicts[HEADERS[0]] = table
-                # for i in range(len(data)):
-                #     dicts[HEADERS[i-1]] = data[i]
-                #     temp_list.append(dicts)
-                # dicts[value] = data_manager.write_table_to_file(DATAFILE, data, separator=';')
-
-
-
+                
     # def get_least_bought_meal(data_set):
     # meal = sorted(data_set, key=lambda v: v["quantity"])
     # least_bought = meal[0]["meal"]
@@ -82,3 +73,12 @@ def delete_customers(table):
         else:
             continue
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
+
+
+def subscribed_emails():
+    data = data_manager.read_table_from_file(DATAFILE, separator=';')
+    subscribed = []
+    for i in data:
+        if i[3] == '1':
+            subscribed.append(i[2])
+    return subscribed

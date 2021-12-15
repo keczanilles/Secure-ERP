@@ -1,18 +1,36 @@
 from model.hr import hr
 from view import terminal as view
 
+LABELS =  ["Id", "Name", "Date of birth", "Department", "Clearance"]
+
 
 def add_employee():
+    table = view.get_inputs(LABELS[1:])
+    hr.add_employees(table)
+    print(table)
     view.print_error_message("Not implemented yet.")
+
 
 def list_employees():
+    print(hr.list_employees())
     view.print_error_message("Not implemented yet.")
 
+
 def update_employee():
-    view.print_error_message("Not implemented yet.")
+    table = view.get_inputs([LABELS[0]])
+    print(table)
+    if hr.check_id(table):
+        data = view.get_inputs(LABELS[1:])
+        hr.update_employee(table, data)
+    else:
+        view.print_error_message("Not implemented yet.")
+
 
 
 def delete_employee():
+    table = view.get_inputs([LABELS[0]])
+    if hr.check_id(table):
+        hr.delete_employee(table)
     view.print_error_message("Not implemented yet.")
 
 
@@ -29,6 +47,8 @@ def next_birthdays():
 
 
 def count_employees_with_clearance():
+    number = view.get_inputs([LABELS[4]])
+    print(hr.clearance(number))
     view.print_error_message("Not implemented yet.")
 
 
