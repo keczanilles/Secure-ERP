@@ -93,3 +93,37 @@ def get_biggest_revenue_product():
 
     return biggest[0][0]
     
+
+
+def convert_date(date):
+    date = ''.join(date).replace('-', '')
+    year =  (int(date[:4]) - 1900) * 365
+    day = int(date[-2:])
+    months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    sum_months = sum(months[:int(date[4:6])])
+    leap_year = 0
+    for i in range(1900, int(date[:4]), 4):
+        if i % 400 == 0:
+            leap_year += 1
+        if i % 100 == 0:
+            continue
+        if i % 4 == 0: 
+            leap_year += 1
+    number = year + sum_months + day -30 + leap_year
+    return number
+
+def number_of_transactions_between(start,end):
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    number_of_days = 0
+    for i in list:
+        if convert_date(i[4]) >= start and convert_date(i[4]) <= end:
+            number_of_days += 1
+    return number_of_days
+
+def sum_of_transactions_between(start,end):
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    sum_of_transactions = 0
+    for i in list:
+        if convert_date(i[4]) >= start and convert_date(i[4]) <= end:
+            sum_of_transactions += float(i[3])
+    return sum_of_transactions

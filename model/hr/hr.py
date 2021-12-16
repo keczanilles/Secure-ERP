@@ -66,6 +66,18 @@ def delete_employee(table):
             continue
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
+
+def get_oldest_youngest():
+    pass
+
+
+def get_average_age():
+    pass
+
+def has_birthday_within_two_weeks():
+    pass
+
+
 def clearance(number):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     number = "".join(number)

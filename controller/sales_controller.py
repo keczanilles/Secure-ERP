@@ -1,7 +1,7 @@
 from model.sales import sales
 from view import terminal as view
 
-
+BETWEEN = ["Start", "End"]
 LABELS = ["Id", "Customer", "Product", "Price", "Date"]
 
 
@@ -43,10 +43,20 @@ def get_biggest_revenue_product():
 
 
 def count_transactions_between():
+    start, end = view.get_inputs(BETWEEN[0:])
+    start = sales.convert_date(start)
+    end = sales.convert_date(end)
+    result =sales.number_of_transactions_between(start,end)
+    print(result)
     view.print_error_message("Not implemented yet.")
 
 
 def sum_transactions_between():
+    start, end = view.get_inputs(BETWEEN[0:])
+    start = sales.convert_date(start)
+    end = sales.convert_date(end)
+    result = sales.sum_of_transactions_between(start, end)
+    print(result)
     view.print_error_message("Not implemented yet.")
 
 
