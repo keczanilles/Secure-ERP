@@ -7,14 +7,14 @@ LABELS =  ["id", "name", "email", "subscribed"]
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
-    view.print_error_message("Not implemented yet.")
+    
 
 
 def list_customers():
     data = crm.list_customers()
     data.insert(0,LABELS)
     view.print_table(data)
-    view.print_error_message("Not implemented yet.")
+    
 
 
 def update_customer():
@@ -23,20 +23,21 @@ def update_customer():
         data = view.get_inputs(LABELS[1:])
         crm.update_customers(table, data)
     else:
-        view.print_error_message("Not implemented yet.")
+        view.print_message("The ID doesn't exist.")
 
 
 def delete_customer():
     table = view.get_inputs([LABELS[0]])
     if crm.check_id(table):
         crm.delete_customers(table)
-    view.print_error_message("Not implemented yet.")
+    else:
+        view.print_message("The ID doesn't exist.")
 
 
 def get_subscribed_emails():
     subscribed_emails = crm.subscribed_emails()
     view.print_general_results(subscribed_emails, LABELS[3])
-    view.print_error_message("Not implemented yet.")
+    
 
 
 def run_operation(option):
@@ -71,7 +72,9 @@ def menu():
     while operation != '0':
         display_menu()
         try:
+            print('\n')
             operation = view.get_input("Please select an operation: ")
+            print('\n')
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)

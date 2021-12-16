@@ -7,24 +7,21 @@ LABELS =  ["Id", "Name", "Date of birth", "Department", "Clearance"]
 def add_employee():
     table = view.get_inputs(LABELS[1:])
     hr.add_employees(table)
-    print(table)
-    view.print_error_message("Not implemented yet.")
-
-
+    
+    
 def list_employees():
-    data = hr.list_customers()
+    data = hr.list_employees()
     data.insert(0,LABELS)
     view.print_table(data)
 
 
 def update_employee():
     table = view.get_inputs([LABELS[0]])
-    print(table)
     if hr.check_id(table):
         data = view.get_inputs(LABELS[1:])
         hr.update_employee(table, data)
     else:
-        view.print_error_message("Not implemented yet.")
+        view.print_message("The ID doesn't exist.")
 
 
 
@@ -32,34 +29,39 @@ def delete_employee():
     table = view.get_inputs([LABELS[0]])
     if hr.check_id(table):
         hr.delete_employee(table)
-    view.print_error_message("Not implemented yet.")
+    else:
+        view.print_message("The ID doesn't exist.")
+    
 
 
 def get_oldest_and_youngest():
-    print(hr.get_oldest_youngest())
-    view.print_error_message("Not implemented yet.")
+    oldest,youngest = hr.get_oldest_youngest()
+    view.print_general_results((oldest,youngest),['Oldest', 'Youngest'])
+    
 
 
 def get_average_age():
     today = view.get_inputs(["Enter the actual date: "])
     print(hr.get_average_age(today))
-    view.print_error_message("Not implemented yet.")
+
 
 
 def next_birthdays():
     today = view.get_inputs(["Enter the date: "])
     print(hr.has_birthday_within_two_weeks(today))
-    view.print_error_message("Not implemented yet.")
+
 
 
 def count_employees_with_clearance():
     number = view.get_inputs([LABELS[4]])
     print(hr.clearance(number))
-    view.print_error_message("Not implemented yet.")
+
 
 
 def count_employees_per_department():
-    view.print_error_message("Not implemented yet.")
+    data = hr.count_employees_per_department()
+    view.print_general_results(data, ['Departments'])
+
 
 
 def run_operation(option):
@@ -106,7 +108,9 @@ def menu():
     while operation != '0':
         display_menu()
         try:
+            print('\n')
             operation = view.get_input("Please select an operation: ")
+            print('\n')
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)

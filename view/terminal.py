@@ -39,8 +39,19 @@ def print_general_results(result, label):
     lists/tuples (like "@label: \n  @item1; @item2"), and dictionaries
     (like "@label \n  @key1: @value1; @key2: @value2")
     """
+    print("\n")
+    print(f'{label}: \n ')
     for i in range(len(result)):
-        print(f'{label} : {result[i]}')
+        print(f'{result[i]}')
+    print("\n")
+
+    # data  = dict(zip([label],[result]))
+    # print(data)
+    # data = {}
+    # key = [i for i in label]
+    # value = result
+    # print(data)
+
 
 # /--------------------------------\
 # |   id   |   product  |   type   |

@@ -102,7 +102,9 @@ def menu():
     while operation != '0':
         display_menu()
         try:
+            print('\n')
             operation = view.get_input("Please select an operation: ")
+            print('\n')
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
