@@ -109,16 +109,13 @@ def has_birthday_within_two_weeks(today):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     replacement = replace_today[:4]
     employees = []
-    print(convert_date(today))
     for i in list:
         i[2] = i[2].replace(i[2][0:4], replacement)
     for i in list:
-        print(convert_date(i[2]))
         if convert_date(i[2]) - convert_date(today)   <= 14 and convert_date(i[2]) - convert_date(today) >= 0:
             employees.append(i[1])
-    print(employees)
+    return employees
 
-has_birthday_within_two_weeks(['2021-01-01'])
 
 def clearance(number):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
