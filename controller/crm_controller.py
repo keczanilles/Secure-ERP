@@ -19,7 +19,6 @@ def list_customers():
 
 def update_customer():
     table = view.get_inputs([LABELS[0]])
-    print(table)
     if crm.check_id(table):
         data = view.get_inputs(LABELS[1:])
         crm.update_customers(table, data)
@@ -35,7 +34,8 @@ def delete_customer():
 
 
 def get_subscribed_emails():
-    print(crm.subscribed_emails())
+    subscribed_emails = crm.subscribed_emails()
+    view.print_general_results(subscribed_emails, LABELS[3])
     view.print_error_message("Not implemented yet.")
 
 
@@ -71,7 +71,7 @@ def menu():
     while operation != '0':
         display_menu()
         try:
-            operation = view.get_input("Select an operation")
+            operation = view.get_input("Please select an operation: ")
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)

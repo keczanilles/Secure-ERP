@@ -27,10 +27,7 @@ def add_employees(table):
 
 
 def list_employees():
-    data = data_manager.read_table_from_file(DATAFILE)
-    hr_data = []
-    for line in data:
-        hr_data.append(dict(zip(HEADERS,line)))
+    hr_data = data_manager.read_table_from_file(DATAFILE)
     return hr_data
 
 def check_id(table):

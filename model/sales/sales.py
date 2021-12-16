@@ -26,10 +26,7 @@ def add_transactions(table):
 
 
 def list_transactions():
-    data = data_manager.read_table_from_file(DATAFILE)
-    sales_data = []
-    for line in data:
-        sales_data.append(dict(zip(HEADERS,line)))
+    sales_data = data_manager.read_table_from_file(DATAFILE)
     return sales_data
 
 

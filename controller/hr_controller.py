@@ -12,8 +12,9 @@ def add_employee():
 
 
 def list_employees():
-    print(hr.list_employees())
-    view.print_error_message("Not implemented yet.")
+    data = hr.list_customers()
+    data.insert(0,LABELS)
+    view.print_table(data)
 
 
 def update_employee():
@@ -105,7 +106,7 @@ def menu():
     while operation != '0':
         display_menu()
         try:
-            operation = view.get_input("Select an operation")
+            operation = view.get_input("Please select an operation: ")
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)

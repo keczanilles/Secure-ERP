@@ -6,13 +6,14 @@ LABELS = ["Id", "Customer", "Product", "Price", "Date"]
 
 
 def add_transaction():
-    table = view.get_inputs(LABELS[1:])
+    table = view.get_inputs(LABELS[LABELS.index('Customer'):])
     sales.add_transactions(table)
     print(table)
     view.print_error_message("Not implemented yet.")
 
 def list_transactions():
     data = sales.list_transactions()
+    data.insert(0,LABELS)
     print(data)
     view.print_error_message("Not implemented yet.")
 
@@ -101,7 +102,7 @@ def menu():
     while operation != '0':
         display_menu()
         try:
-            operation = view.get_input("Select an operation")
+            operation = view.get_input("Please select an operation: ")
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
