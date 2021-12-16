@@ -8,6 +8,7 @@ Data table structure:
     - clearance level (int): from 0 (lowest) to 7 (highest)
 """
 
+from controller.sales_controller import get_biggest_revenue_transaction
 from model import data_manager, util
 
 DATAFILE = "model/hr/hr.csv"
@@ -67,16 +68,57 @@ def delete_employee(table):
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
+def convert_date(date):
+    date = ''.join(date).replace('-', '')
+    year =  (int(date[:4]) - 1900) * 365
+    day = int(date[-2:])
+    months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    sum_months = sum(months[:int(date[4:6])])
+    leap_year = 0
+    for i in range(1900, int(date[:4]), 4):
+        if i % 400 == 0:
+            leap_year += 1
+        if i % 100 == 0:
+            continue
+        if i % 4 == 0: 
+            leap_year += 1
+    number = year + sum_months + day -30 + leap_year
+    return number
+
+
 def get_oldest_youngest():
-    pass
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    for i in list:
+        i[2] = convert_date(i[2])
+    oldest = min(sorted(list, key=lambda y: y[1]))
+    youngest = max(sorted(list, key=lambda y: y[1]))   
+    return oldest[1], youngest[1]
 
 
-def get_average_age():
-    pass
+def get_average_age(today):
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    ages = []
+    for i in list:
+        ages.append(int((convert_date(today) - convert_date(i[2]))/365))
+        
+    return (int(sum(ages) / len(ages)))
 
-def has_birthday_within_two_weeks():
-    pass
 
+def has_birthday_within_two_weeks(today):
+    replace_today = ''.join(today).replace('-', '')
+    list = data_manager.read_table_from_file(DATAFILE, separator=';')
+    replacement = replace_today[:4]
+    employees = []
+    print(convert_date(today))
+    for i in list:
+        i[2] = i[2].replace(i[2][0:4], replacement)
+    for i in list:
+        print(convert_date(i[2]))
+        if convert_date(i[2]) - convert_date(today)   <= 14 and convert_date(i[2]) - convert_date(today) >= 0:
+            employees.append(i[1])
+    print(employees)
+
+has_birthday_within_two_weeks(['2021-01-01'])
 
 def clearance(number):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
@@ -87,7 +129,7 @@ def clearance(number):
             counter += 1
     return counter
 
-#  SALES = 3 PRODUCTION = 4 HR = 2 
+
 def count_employees_per_department():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     departments = []
@@ -100,3 +142,5 @@ def count_employees_per_department():
     keys = sorted(set(departments))
     dicts = dict(zip(keys, numbers))
     return dicts
+
+

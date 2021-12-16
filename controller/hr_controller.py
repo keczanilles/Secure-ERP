@@ -35,14 +35,19 @@ def delete_employee():
 
 
 def get_oldest_and_youngest():
+    print(hr.get_oldest_youngest())
     view.print_error_message("Not implemented yet.")
 
 
 def get_average_age():
+    today = view.get_inputs(["Enter the actual date: "])
+    print(hr.get_average_age(today))
     view.print_error_message("Not implemented yet.")
 
 
 def next_birthdays():
+    today = view.get_inputs(["Enter the date: "])
+    print(hr.has_birthday_within_two_weeks(today))
     view.print_error_message("Not implemented yet.")
 
 
