@@ -42,15 +42,9 @@ def print_general_results(result, label):
     print("\n")
     print(f'{label}: \n ')
     for i in range(len(result)):
-        print(f'{str(result[i])}')
+        print(f'{result[i]}')
     print("\n")
 
-    # data  = dict(zip([label],[result]))
-    # print(data)
-    # data = {}
-    # key = [i for i in label]
-    # value = result
-    # print(data)
 
 
 # /--------------------------------\

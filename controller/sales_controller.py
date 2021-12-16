@@ -2,11 +2,11 @@ from model.sales import sales
 from view import terminal as view
 
 BETWEEN = ["Start", "End"]
-LABELS = ["Id", "Customer", "Product", "Price", "Date"]
+LABELS = ["ID", "Distributor", "Title", "Revenue", "Premier"]
 
 
 def add_transaction():
-    table = view.get_inputs(LABELS[LABELS.index('Product'):])
+    table = view.get_inputs(LABELS[LABELS.index('Distributor'):])
     sales.add_transactions(table)
 
     
@@ -20,7 +20,7 @@ def list_transactions():
 def update_transaction():
     table = view.get_inputs([LABELS[0]])
     if sales.check_id(table):
-        data = view.get_inputs(LABELS[2:])
+        data = view.get_inputs(LABELS[1:])
         sales.update_transaction(table,data)
     else:
         view.print_message("The ID doesn't exist.")
@@ -36,12 +36,12 @@ def delete_transaction():
 
 def get_biggest_revenue_transaction():
     data = sales.get_biggest_revenue_transaction()
-    view.print_general_results(data, 'Biggest revenue transaction(s)')
+    view.print_general_results(data, 'The movie which generated the biggest transaction')
 
 
 def get_biggest_revenue_product():
     data = sales.get_biggest_revenue_product()
-    view.print_general_results([data], 'Biggest revenue product')
+    view.print_general_results([data], 'The movie which generated the biggest revenue')
     
 
 

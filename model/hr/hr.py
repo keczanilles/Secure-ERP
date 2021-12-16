@@ -87,9 +87,9 @@ def get_oldest_youngest():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     for i in list:
         i[2] = convert_date(i[2])
-    oldest = min(sorted(list, key=lambda y: y[1]))
-    youngest = max(sorted(list, key=lambda y: y[1]))   
-    return oldest[1], youngest[1]
+    oldest = sorted(list,key=lambda y: y[2])
+    youngest = sorted(list, key=lambda y: y[2])
+    return oldest[0][1], youngest[-1][1]
 
 
 
@@ -104,15 +104,17 @@ def get_average_age(today):
 
 def has_birthday_within_two_weeks(today):
     replace_today = ''.join(today).replace('-', '')
+    today_digit = convert_date(today)
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     replacement = replace_today[:4]
     employees = []
     for i in list:
         i[2] = i[2].replace(i[2][0:4], replacement)
     for i in list:
-        if convert_date(i[2]) - convert_date(today)   <= 14 and convert_date(i[2]) - convert_date(today) >= 0:
+        if 0 <= convert_date(i[2]) - convert_date(today) <= 14 or convert_date(today) - (convert_date(i[2])) >= 351:
             employees.append(i[1])
     return employees
+
 
 
 def clearance(number):

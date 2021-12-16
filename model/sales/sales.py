@@ -11,16 +11,11 @@ Data table structure:
 from model import data_manager, util
 
 DATAFILE = "model/sales/sales.csv"
-HEADERS = ["Id", "Customer", "Product", "Price", "Date"]
+HEADERS = ["ID", "Distributor", "Title", "Revenue", "Premier"]
 
 def add_transactions(table):
     table = table
     table.insert(0, util.generate_id(number_of_small_letters=4,
-                number_of_capital_letters=2,
-                number_of_digits=2,
-                number_of_special_chars=2,
-                allowed_special_chars=r"_+-!"))
-    table.insert(1, util.generate_id(number_of_small_letters=4,
                 number_of_capital_letters=2,
                 number_of_digits=2,
                 number_of_special_chars=2,
@@ -51,14 +46,10 @@ def update_transaction(table, data):
     table = ''.join(table)
     for dicts in list:
         if dicts[0] == table:
-            dicts[1] = util.generate_id(number_of_small_letters=4,
-                number_of_capital_letters=2,
-                number_of_digits=2,
-                number_of_special_chars=2,
-                allowed_special_chars=r"_+-!")
-            dicts[2] = data[0]
-            dicts[3] = data[1]
-            dicts[4] = data[2]
+            dicts[1] = data[0]
+            dicts[2] = data[1]
+            dicts[3] = data[2]
+            dicts[4] = data[3]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
 
 def delete_transaction(table):
