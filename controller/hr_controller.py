@@ -42,25 +42,29 @@ def get_oldest_and_youngest():
 
 def get_average_age():
     today = view.get_inputs(["Enter the actual date: "])
-    print(hr.get_average_age(today))
+    avg_age = hr.get_average_age(today)
+    view.print_general_results([avg_age], 'Average age')
 
 
 
 def next_birthdays():
     today = view.get_inputs(["Enter the date: "])
-    print(hr.has_birthday_within_two_weeks(today))
+    persons = hr.has_birthday_within_two_weeks(today)
+    view.print_general_results(persons, 'The employees who will have birthdays in the next 14 days')
 
 
 
 def count_employees_with_clearance():
     number = view.get_inputs([LABELS[4]])
-    print(hr.clearance(number))
+    count = hr.clearance(number)
+    view.print_general_results([count], f'The number of employees with minimum {int(number[0])} clearance level')
 
 
 
 def count_employees_per_department():
     data = hr.count_employees_per_department()
-    view.print_general_results(data, ['Departments'])
+    view.print_message(f'Departments: \n {data}')
+    print("\n")
 
 
 
