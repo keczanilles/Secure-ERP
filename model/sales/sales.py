@@ -20,6 +20,11 @@ def add_transactions(table):
                 number_of_digits=2,
                 number_of_special_chars=2,
                 allowed_special_chars=r"_+-!"))
+    table.insert(1, util.generate_id(number_of_small_letters=4,
+                number_of_capital_letters=2,
+                number_of_digits=2,
+                number_of_special_chars=2,
+                allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
@@ -46,10 +51,14 @@ def update_transaction(table, data):
     table = ''.join(table)
     for dicts in list:
         if dicts[0] == table:
-            dicts[1] = data[0]
-            dicts[2] = data[1]
-            dicts[3] = data[2]
-            dicts[4] = data[3]
+            dicts[1] = util.generate_id(number_of_small_letters=4,
+                number_of_capital_letters=2,
+                number_of_digits=2,
+                number_of_special_chars=2,
+                allowed_special_chars=r"_+-!")
+            dicts[2] = data[0]
+            dicts[3] = data[1]
+            dicts[4] = data[2]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
 
 def delete_transaction(table):
