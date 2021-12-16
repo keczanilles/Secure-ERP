@@ -23,17 +23,16 @@ def add_customers(table):
                 allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
-    print(temp_list)
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
 
 
 def list_customers():
-    data = data_manager.read_table_from_file(DATAFILE)
-    crm_data = []
-    for line in data:
-        crm_data.append(dict(zip(HEADERS,line)))
+    crm_data = data_manager.read_table_from_file(DATAFILE)
+    # crm_data = []
+    # for line in data:
+    #     crm_data.append(dict(zip(HEADERS,line)))
     return crm_data
 
 def check_id(table):

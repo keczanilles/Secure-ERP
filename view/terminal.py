@@ -52,7 +52,31 @@ def print_table(table):
     Args:
         table: list of lists - the table to print out
     """
-    pass
+    splitter_line = []
+    splitter = " | "
+    splitter_forline = "-|-"
+    table_len = []
+    header = table[0]
+    for i in range(len(header)):
+       length = 0
+       for j in range(len(table)):
+           if len(table[j][i]) > length:
+               length = len(table[j][i])
+       table_len.append(length)
+
+    print(f' /{"-" * (sum(table_len) + (len(splitter) * (len(table_len))) - 1)}\\')
+    for i in range(len(header)):   
+        splitter_line.append(f'{splitter_forline}{"-" * table_len[i]}')
+    splitter_line = ''.join(splitter_line)[1:]
+    for i in range(len(table)):
+        lines = []
+        for j in range(len(table[i])): 
+            lines.append(f'{splitter}{table[i][j].center(table_len[j])}') 
+        lines = "".join(lines)
+        if i != 0:
+            print(f' {splitter_line}{splitter_forline[:-1]}')
+        print(f'{lines}{splitter}')
+    print(f' \\{"-" * (sum(table_len) + (len(splitter) * (len(table_len))) - 1)}/')
 
 
 def get_input(label):
@@ -62,7 +86,7 @@ def get_input(label):
         label: str - the label before the user prompt
     """
     mode = input(label )
-    return int(mode)
+    return mode
     
 
 

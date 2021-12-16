@@ -23,7 +23,6 @@ def add_employees(table):
                 allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
-    print(temp_list)
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
@@ -68,6 +67,7 @@ def delete_employee(table):
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
+
 def convert_date(date):
     date = ''.join(date).replace('-', '')
     year =  (int(date[:4]) - 1900) * 365
@@ -93,6 +93,7 @@ def get_oldest_youngest():
     oldest = min(sorted(list, key=lambda y: y[1]))
     youngest = max(sorted(list, key=lambda y: y[1]))   
     return oldest[1], youngest[1]
+
 
 
 def get_average_age(today):

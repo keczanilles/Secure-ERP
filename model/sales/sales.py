@@ -22,7 +22,6 @@ def add_transactions(table):
                 allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
-    print(temp_list)
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
@@ -92,7 +91,9 @@ def get_biggest_revenue_product():
     biggest = sorted(revenues.items(), key=lambda v: v[1], reverse = True)
 
     return biggest[0][0]
-    
+
+
+
 
 
 def convert_date(date):

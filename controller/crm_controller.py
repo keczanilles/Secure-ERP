@@ -7,13 +7,13 @@ LABELS =  ["id", "name", "email", "subscribed"]
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
-    print(table)
     view.print_error_message("Not implemented yet.")
 
 
 def list_customers():
     data = crm.list_customers()
-    print(data)
+    data.insert(0,LABELS)
+    view.print_table(data)
     view.print_error_message("Not implemented yet.")
 
 
