@@ -10,8 +10,10 @@ Data table structure:
 
 from model import data_manager, util
 
+
 DATAFILE = "model/sales/sales.csv"
 HEADERS = ["ID", "Distributor", "Title", "Revenue", "Premier"]
+
 
 def add_transactions(table):
     table = table
@@ -41,6 +43,7 @@ def check_id(table):
     else:
         return False
 
+
 def update_transaction(table, data):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     table = ''.join(table)
@@ -52,6 +55,7 @@ def update_transaction(table, data):
             dicts[4] = data[3]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
 
+
 def delete_transaction(table):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     table = ''.join(table)
@@ -62,6 +66,7 @@ def delete_transaction(table):
         else:
             continue
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
+
 
 def get_biggest_revenue_transaction():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
@@ -79,8 +84,7 @@ def get_biggest_revenue_product():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     revenues = {}
     for i in list:
-        key = i[2]
-        value = i[3]
+        key = i[1]
         if key in revenues:
             revenues[key] += float(i[3])
         else:
@@ -88,9 +92,6 @@ def get_biggest_revenue_product():
     biggest = sorted(revenues.items(), key=lambda v: v[1], reverse = True)
 
     return biggest[0][0]
-
-
-
 
 
 def convert_date(date):
@@ -110,6 +111,7 @@ def convert_date(date):
     number = year + sum_months + day -30 + leap_year
     return number
 
+
 def number_of_transactions_between(start,end):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     number_of_days = 0
@@ -117,6 +119,7 @@ def number_of_transactions_between(start,end):
         if convert_date(i[4]) >= start and convert_date(i[4]) <= end:
             number_of_days += 1
     return number_of_days
+
 
 def sum_of_transactions_between(start,end):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')

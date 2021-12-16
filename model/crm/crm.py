@@ -14,6 +14,7 @@ from model import data_manager, util
 DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
+
 def add_customers(table):
     table = table
     table.insert(0, util.generate_id(number_of_small_letters=4,
@@ -26,14 +27,13 @@ def add_customers(table):
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
-
-
 def list_customers():
     crm_data = data_manager.read_table_from_file(DATAFILE)
     # crm_data = []
     # for line in data:
     #     crm_data.append(dict(zip(HEADERS,line)))
     return crm_data
+
 
 def check_id(table):
     table = ''.join(table)
@@ -45,6 +45,7 @@ def check_id(table):
         return True
     else:
         return False
+
 
 def update_customers(table, data):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')

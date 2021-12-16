@@ -1,6 +1,7 @@
 from model.hr import hr
 from view import terminal as view
 
+
 LABELS =  ["ID", "Name", "Date of birth", "Department", "Clearance"]
 
 
@@ -24,7 +25,6 @@ def update_employee():
         view.print_message("The ID doesn't exist.")
 
 
-
 def delete_employee():
     table = view.get_inputs([LABELS[0]])
     if hr.check_id(table):
@@ -33,18 +33,15 @@ def delete_employee():
         view.print_message("The ID doesn't exist.")
     
 
-
 def get_oldest_and_youngest():
     oldest,youngest = hr.get_oldest_youngest()
     view.print_general_results((oldest,youngest),['Oldest', 'Youngest'])
     
 
-
 def get_average_age():
     today = view.get_inputs(["Enter the actual date: "])
     avg_age = hr.get_average_age(today)
     view.print_general_results([avg_age], 'Average age')
-
 
 
 def next_birthdays():
@@ -53,19 +50,16 @@ def next_birthdays():
     view.print_general_results(persons, 'The employees who will have birthdays in the next 14 days')
 
 
-
 def count_employees_with_clearance():
     number = view.get_inputs([LABELS[4]])
     count = hr.clearance(number)
     view.print_general_results([count], f'The number of employees with minimum {int(number[0])} clearance level')
 
 
-
 def count_employees_per_department():
     data = hr.count_employees_per_department()
     view.print_message(f'Departments: \n {data}')
     print("\n")
-
 
 
 def run_operation(option):

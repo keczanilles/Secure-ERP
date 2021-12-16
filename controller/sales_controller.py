@@ -1,6 +1,7 @@
 from model.sales import sales
 from view import terminal as view
 
+
 BETWEEN = ["Start", "End"]
 LABELS = ["ID", "Distributor", "Title", "Revenue", "Premier"]
 
@@ -8,7 +9,6 @@ LABELS = ["ID", "Distributor", "Title", "Revenue", "Premier"]
 def add_transaction():
     table = view.get_inputs(LABELS[LABELS.index('Distributor'):])
     sales.add_transactions(table)
-
     
 
 def list_transactions():
@@ -44,7 +44,6 @@ def get_biggest_revenue_product():
     view.print_general_results([data], 'The movie which generated the biggest revenue')
     
 
-
 def count_transactions_between():
     start, end = view.get_inputs(BETWEEN[0:])
     start1 = sales.convert_date(start)
@@ -53,7 +52,6 @@ def count_transactions_between():
     view.print_general_results([result], f'Transactions between {start} and {end}')
     
 
-
 def sum_transactions_between():
     start, end = view.get_inputs(BETWEEN[0:])
     start1 = sales.convert_date(start)
@@ -61,7 +59,6 @@ def sum_transactions_between():
     result = sales.sum_of_transactions_between(start1, end1)
     view.print_general_results([result], f'Sum of transactions between {start} and {end}')
     
-
 
 def run_operation(option):
     if option == 1:
