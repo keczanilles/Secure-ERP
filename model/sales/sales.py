@@ -79,7 +79,7 @@ def get_biggest_revenue_product():
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     revenues = {}
     for i in list:
-        key = i[2]
+        key = i[1]
         value = i[3]
         if key in revenues:
             revenues[key] += float(i[3])

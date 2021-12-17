@@ -92,7 +92,7 @@ def display_menu():
                "List movies",
                "Update movie",
                "Remove movie",
-               "Get the film studio that made the biggest revenue",
+               "Get the movie that made the biggest revenue",
                "Get the product that made the biggest revenue altogether",
                "Count number of movies between",
                "Sum the price of movies between"]
