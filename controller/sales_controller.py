@@ -88,14 +88,14 @@ def run_operation(option):
 
 def display_menu():
     options = ["Back to main menu",
-               "Add new transaction",
-               "List transactions",
-               "Update transaction",
-               "Remove transaction",
-               "Get the transaction that made the biggest revenue",
+               "Add new movie",
+               "List movies",
+               "Update movie",
+               "Remove movie",
+               "Get the film studio that made the biggest revenue",
                "Get the product that made the biggest revenue altogether",
-               "Count number of transactions between",
-               "Sum the price of transactions between"]
+               "Count number of movies between",
+               "Sum the price of movies between"]
     view.print_menu("Sales", options)
 
 

@@ -36,7 +36,7 @@ def delete_employee():
 
 def get_oldest_and_youngest():
     oldest,youngest = hr.get_oldest_youngest()
-    view.print_general_results((oldest,youngest),['Oldest', 'Youngest'])
+    view.print_message(f"The oldest member is {oldest} and the youngest member is {youngest} \n")
     
 
 

@@ -14,6 +14,7 @@ from model import data_manager, util
 DATAFILE = "model/hr/hr.csv"
 HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
+
 def add_employees(table):
     table = table
     table.insert(0, util.generate_id(number_of_small_letters=4,
