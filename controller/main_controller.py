@@ -26,11 +26,14 @@ def display_menu():
 def menu():
     option = None
     while option != '0':
+        view.print_message('\n')
+        view.print_message("Welcome to the world of Quentin Tarantino!")
+        view.print_message('\n')
         display_menu()
         try:
-            print('\n')
+            view.print_message('\n')
             option = view.get_input("Please select a module: ")
-            print('\n')
+            view.print_message('\n')
             load_module(int(option))
         except KeyError:
             view.print_error_message("There is no such option!")

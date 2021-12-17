@@ -1,21 +1,19 @@
 from model.crm import crm
-from model import util
 from view import terminal as view
 
-LABELS =  ["ID", "Name", "Email", "Subscribed"]
+LABELS = ["ID", "Name", "Email", "Subscribed"]
+
 
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
-    
 
 
 def list_customers():
     data = crm.list_customers()
-    data.insert(0,LABELS)
+    data.insert(0, LABELS)
     view.print_table(data)
     
-
 
 def update_customer():
     table = view.get_inputs([LABELS[0]])
@@ -38,7 +36,6 @@ def get_subscribed_emails():
     subscribed_emails = crm.subscribed_emails()
     view.print_general_results(subscribed_emails, LABELS[3])
     
-
 
 def run_operation(option):
     if option == 1:

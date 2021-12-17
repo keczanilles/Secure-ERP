@@ -1,7 +1,7 @@
 from model.hr import hr
 from view import terminal as view
 
-LABELS =  ["ID", "Name", "Date of birth", "Department", "Clearance"]
+LABELS = ["ID", "Name", "Date of birth", "Department", "Clearance"]
 
 
 def add_employee():

@@ -6,34 +6,25 @@ Data table structure:
     - email (string)
     - subscribed (int): Is subscribed to the newsletter? 1: yes, 0: no
 """
-
-from os import sep
 from model import data_manager, util
 
 
 DATAFILE = "model/crm/crm.csv"
 HEADERS = ["id", "name", "email", "subscribed"]
 
+
 def add_customers(table):
     table = table
-    table.insert(0, util.generate_id(number_of_small_letters=4,
-                number_of_capital_letters=2,
-                number_of_digits=2,
-                number_of_special_chars=2,
-                allowed_special_chars=r"_+-!"))
+    table.insert(0, util.generate_id(number_of_small_letters=4, number_of_capital_letters=2, number_of_digits=2, number_of_special_chars=2, allowed_special_chars=r"_+-!"))
     temp_list = data_manager.read_table_from_file(DATAFILE, separator=';')
     temp_list.append(table)
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
 
 
-
-
 def list_customers():
     crm_data = data_manager.read_table_from_file(DATAFILE)
-    # crm_data = []
-    # for line in data:
-    #     crm_data.append(dict(zip(HEADERS,line)))
     return crm_data
+
 
 def check_id(table):
     table = ''.join(table)
@@ -46,6 +37,7 @@ def check_id(table):
     else:
         return False
 
+
 def update_customers(table, data):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     table = ''.join(table)
@@ -55,11 +47,6 @@ def update_customers(table, data):
             dicts[2] = data[1]
             dicts[3] = data[2]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
-                
-    # def get_least_bought_meal(data_set):
-    # meal = sorted(data_set, key=lambda v: v["quantity"])
-    # least_bought = meal[0]["meal"]
-    # return least_bought
 
 
 def delete_customers(table):
