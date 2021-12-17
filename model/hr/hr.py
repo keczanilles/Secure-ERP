@@ -11,6 +11,7 @@ Data table structure:
 from controller.sales_controller import get_biggest_revenue_transaction
 from model import data_manager, util
 
+
 DATAFILE = "model/hr/hr.csv"
 HEADERS = ["Id", "Name", "Date of birth", "Department", "Clearance"]
 
@@ -31,6 +32,7 @@ def list_employees():
     hr_data = data_manager.read_table_from_file(DATAFILE)
     return hr_data
 
+
 def check_id(table):
     table = ''.join(table)
     data = data_manager.read_table_from_file(DATAFILE)
@@ -41,6 +43,7 @@ def check_id(table):
         return True
     else:
         return False
+
 
 def update_employee(table, data):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
@@ -53,6 +56,7 @@ def update_employee(table, data):
             dicts[4] = data[3]
     data_manager.write_table_to_file(DATAFILE, list, separator=';')
 
+
 def delete_employee(table):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     table = ''.join(table)
@@ -63,7 +67,6 @@ def delete_employee(table):
         else:
             continue
     data_manager.write_table_to_file(DATAFILE, temp_list, separator=';')
-
 
 
 def convert_date(date):
@@ -93,7 +96,6 @@ def get_oldest_youngest():
     return oldest[0][1], youngest[-1][1]
 
 
-
 def get_average_age(today):
     list = data_manager.read_table_from_file(DATAFILE, separator=';')
     ages = []
@@ -115,7 +117,6 @@ def has_birthday_within_two_weeks(today):
         if 0 <= convert_date(i[2]) - convert_date(today) <= 14 or convert_date(today) - (convert_date(i[2])) >= 351:
             employees.append(i[1])
     return employees
-
 
 
 def clearance(number):
@@ -141,4 +142,6 @@ def count_employees_per_department():
     dicts = dict(zip(keys, numbers))
     return dicts
 
-
+def get_random_quote():
+    quote = util.generate_quote()
+    return quote

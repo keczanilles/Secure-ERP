@@ -10,7 +10,7 @@ from model import data_manager, util
 
 
 DATAFILE = "model/crm/crm.csv"
-HEADERS = ["id", "name", "email", "subscribed"]
+HEADERS = ["ID", "Name", "Email", "Subscribed"]
 
 
 def add_customers(table):
@@ -68,3 +68,8 @@ def subscribed_emails():
         if i[3] == '1':
             subscribed.append(i[2])
     return subscribed
+
+
+def get_random_quote():
+    quote = util.generate_quote()
+    return quote

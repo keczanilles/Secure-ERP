@@ -1,13 +1,12 @@
 from model.crm import crm
 from view import terminal as view
 
-LABELS = ["ID", "Name", "Email", "Subscribed"]
+LABELS =  ["ID", "Name", "Email", "Subscribed"]
 
 
 def add_customer():
     table = view.get_inputs(LABELS[1:])
     crm.add_customers(table)
-
 
 def list_customers():
     data = crm.list_customers()
@@ -68,10 +67,13 @@ def menu():
     operation = None
     while operation != '0':
         display_menu()
+        view.print_message('\n')
+        view.print_message(crm.get_random_quote())
+        view.print_message('\n')
         try:
-            print('\n')
+            view.print_message('\n')
             operation = view.get_input("Please select an operation: ")
-            print('\n')
+            view.print_message('\n')
             run_operation(int(operation))
         except KeyError as err:
             view.print_error_message(err)
